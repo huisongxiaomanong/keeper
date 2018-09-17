@@ -1,4 +1,4 @@
-package com.qfedu.keep.Controller;
+package com.qfedu.keep.controller;
 
 public class text {
     public static void zheshiceshi(){
