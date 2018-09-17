@@ -1,0 +1,13 @@
+create database db_keep;
+use db_keep;
+1、用户表
+字段名称    数据类型    约束条件    说明信息
+id          int         PK AI       主键
+username    varchar(20) unique      用户名 昵称
+password    varchar(50) not null    密文
+phone       char(11)    unique      手机号
+flag        int          默认0      标记位 1激活0未激活
+createdate  date                    注册日期
+密码需要加密：md5+盐+加密次数
+
+create table t_user(id int Primary key AUTO_INCREMENT,username varchar(20) unique ,password varchar(50) not null,phone char(11) unique not null,sex int DEFAULT 0 not NULL comment '标记位：1男；0女',flag int DEFAULT 0 not NULL  comment '标记位：1已激活；0未激活',createdate timestamp )
