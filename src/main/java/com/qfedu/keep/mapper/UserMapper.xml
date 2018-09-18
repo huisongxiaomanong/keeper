@@ -6,14 +6,14 @@
         <result column="username" jdbcType="VARCHAR" property="username"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
         <result column="phone" jdbcType="CHAR" property="phone"/>
-        <result column="sex" jdbcType="INTERER" property="sex"/>
+        <result column="sex" jdbcType="INTEGER" property="sex"/>
         <result column="flag" jdbcType="INTEGER" property="flag"/>
         <result column="createdate" jdbcType="DATE" property="createdate"/>
     </resultMap>
     <sql id="Base_Column_List">
         id, username, password, phone,sex, flag, createdate
     </sql>
-    <insert id="insertSelective" parameterType="com.imKing.domain.User">
+    <insert id="insertSelective" parameterType="com.qfedu.keep.domain.User">
         insert into t_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -56,7 +56,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.imKing.domain.User">
+    <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.keep.domain.User">
         update t_user
         <set>
             <if test="username != null">
@@ -78,10 +78,10 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <!--通过名字搜索用户，用于登录和验证是否用户名已被占用-->
-    <select id="selectByName" parameterMap="BaseResultMap">
+    <select id="selectByName" resultMap="BaseResultMap">
         select <include refid="Base_Column_List"></include> from t_user where username = #{username}
     </select>
-    <select id="selectByPhone" parameterMap="BaseResultMap">
+    <select id="selectByPhone" resultMap="BaseResultMap">
         select <include refid="Base_Column_List"></include> from t_user where phone = #{phone}
     </select>
 </mapper>

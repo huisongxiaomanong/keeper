@@ -1,26 +1,22 @@
-package com.qfedu.keep.vo;
+package com.qfedu.keep.result;
 
 import java.util.List;
 
-public class PageVo<T> {
-    private Integer code;
+public class Result<T> {
+
+    private int code;
+
     private String msg;
+
     private List<T> data;
 
-    public PageVo(Integer code, String msg, List<T> data) {
-        this.code = code;
-        this.msg = msg;
-        this.data = data;
-    }
+    private Object outvalue;
 
-    public PageVo() {
-    }
-
-    public Integer getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(Integer code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
@@ -39,4 +35,14 @@ public class PageVo<T> {
     public void setData(List<T> data) {
         this.data = data;
     }
+
+    public Object getOutvalue() {
+        return outvalue;
+    }
+
+    public void setOutvalue(Object outvalue) {
+        this.outvalue = outvalue;
+    }
+
+
 }

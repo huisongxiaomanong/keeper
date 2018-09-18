@@ -19,19 +19,17 @@ public class UserServiceImpl implements UserService {
             if (Objects.equals(user.getPassword(),password)) {
                 return user;
             }
-            return null;
         }
         return null;
     }
 
     @Override
     public User loginByPhone(String phone, String password) {
-        User user = userMapper.selectByName(phone);
+        User user = userMapper.selectByPhone(phone);
         if (user != null) {
             if (Objects.equals(user.getPassword(),password)) {
                 return user;
             }
-            return null;
         }
         return null;
     }
