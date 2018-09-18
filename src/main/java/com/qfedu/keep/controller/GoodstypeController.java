@@ -19,4 +19,14 @@ public class GoodstypeController {
 
         return goodstypeService.saveGoodstype(goodstype)?V.setOk(1,"添加商品类型成功"):V.setError(0,"添加商品类型失败");
     }
+    @RequestMapping("querygoodstype.do")
+    @ResponseBody
+    public V<Goodstype> query(int id){
+        Goodstype goodstype = goodstypeService.queryByID(id);
+        V<Goodstype> goodstypeV = new V<>();
+        goodstypeV.setMsg("chenggong");
+        goodstypeV.setCode(1);
+        goodstypeV.setData(goodstype);
+        return goodstypeV;
+    }
 }

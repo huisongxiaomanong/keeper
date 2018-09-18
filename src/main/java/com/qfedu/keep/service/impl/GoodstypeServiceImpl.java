@@ -19,4 +19,9 @@ public class GoodstypeServiceImpl implements GoodstypeService {
 
         return goodstypeMapper.insertSelective(goodstype) > 0 ? true : false;
     }
+
+    @Override
+    public Goodstype queryByID(int id) {
+        return goodstypeMapper.selectByPrimaryKey(id);
+    }
 }
