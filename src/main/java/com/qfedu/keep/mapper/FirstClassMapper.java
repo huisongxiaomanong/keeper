@@ -1,6 +1,9 @@
 package com.qfedu.keep.mapper;
 
 import com.qfedu.keep.domain.FirstClass;
+import org.apache.catalina.LifecycleState;
+
+import java.util.List;
 
 public interface FirstClassMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +17,6 @@ public interface FirstClassMapper {
     int updateByPrimaryKeySelective(FirstClass record);
 
     int updateByPrimaryKey(FirstClass record);
+
+    List<FirstClass> selectAll();
 }

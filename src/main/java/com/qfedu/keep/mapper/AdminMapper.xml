@@ -79,4 +79,7 @@
       flag = #{flag,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectByName" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"/> FROM tb_admin WHERE name = #{name}
+  </select>
 </mapper>
