@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class GoodstypeController {
     @Autowired
     private GoodstypeServiceImpl goodstypeService;
-    @RequestMapping("savegoodstype.do")
+    @RequestMapping(value = "savegoodstype.do")
     @ResponseBody
     public V<Goodstype> save(Goodstype goodstype){
-
+        System.out.println(goodstype.getType());
         return goodstypeService.saveGoodstype(goodstype)?V.setOk(1,"添加商品类型成功"):V.setError(0,"添加商品类型失败");
     }
     @RequestMapping("querygoodstype.do")
