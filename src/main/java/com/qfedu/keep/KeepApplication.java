@@ -8,7 +8,6 @@ import org.springframework.context.annotation.ComponentScan;
 
 @MapperScan("com.qfedu.keep.mapper")
 @SpringBootApplication
-@MapperScan("com.qfedu.keep.mapper")
 public class KeepApplication {
 
     public static void main(String[] args) {
