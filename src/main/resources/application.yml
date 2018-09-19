@@ -1,0 +1,18 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://47.98.187.110/keep
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password: 123456
+
+  mvc:
+    view:
+      suffix: .html
+    date-format: "yyyy-MM-dd"
+  http:
+    encoding:
+      enabled: true
+      charset: utf-8

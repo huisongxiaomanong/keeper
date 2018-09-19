@@ -1,6 +1,10 @@
 package com.qfedu.keep.mapper;
 
 import com.qfedu.keep.domain.Comment;
+import com.qfedu.keep.vo.CommentVo;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CommentMapper {
     int deleteByPrimaryKey(Integer id);
@@ -16,4 +20,9 @@ public interface CommentMapper {
     int updateByPrimaryKeyWithBLOBs(Comment record);
 
     int updateByPrimaryKey(Comment record);
+
+    List<CommentVo>queryBySid(int sid, @Param("index") int index,@Param("count") int count);
+
+    int selectBycount(int sid);
+
 }

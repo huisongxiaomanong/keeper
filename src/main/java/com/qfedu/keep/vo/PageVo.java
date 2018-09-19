@@ -39,4 +39,12 @@ public class PageVo<T> {
     public void setData(List<T> data) {
         this.data = data;
     }
+
+    public static <E> PageVo creatJson (int code, String msg, List<E> data) {
+        PageVo<E> result = new PageVo<E>();
+        result.setCode(code);
+        result.setMsg(msg);
+        result.setData(data);
+        return result;
+    }
 }

@@ -104,4 +104,12 @@
       fabulous = #{fabulous,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="queryBySid" parameterType="com.qfedu.keep.vo.CommentVo">
+    SELECT c.text, c.fabulous, u.username from t_comment c LEFT JOIN t_user  u on u.id=c.uid LEFT JOIN
+t_context co on c.sid = co.id  where c.sid=#{sid} limit #{index},#{count};
+  </select>
+  <select id="selectBycount" parameterType="com.qfedu.keep.vo.CommentVo">
+     SELECT count(*) from t_comment WHERE sid =#{sid};
+  </select>
+
 </mapper>
