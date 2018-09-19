@@ -50,4 +50,54 @@ public class UserController {
         return result;
     }
     //用户注册
+    @RequestMapping("/usersave.do")
+    public Result usersave(User user){
+        Result result = new Result();
+        if (userService.save(user)) {
+            result.setCode(1);
+            result.setMsg("注册成功");
+            return result;
+        }
+        result.setMsg("注册失败，稍后再试");
+        result.setCode(1);
+        return result;
+    }
+    //检查手机号已注册
+    @RequestMapping("/checkphone.do")
+    public Result checkPhone(String phone) {
+        Result result = new Result();
+        if (userService.haveByPhone(phone)){
+            result.setCode(0);
+            result.setMsg("手机号已注册");
+            return result;
+        }
+        result.setCode(1);
+        result.setMsg("手机号可用");
+        return result;
+    }
+    //检查名字是否已存在
+    @RequestMapping("/checkname.do")
+    public Result checkName(String username) {
+        Result result = new Result();
+        if (userService.haveByUsername(username)){
+            result.setCode(0);
+            result.setMsg("用户名已被用");
+            return result;
+        }
+        result.setCode(1);
+        result.setMsg("用户名可用");
+        return result;
+    }
+    //修改用户名
+    @RequestMapping("/modifyname.do")
+    public Result modifyName(String username,int id){
+        Result result = new Result();
+        if (userService.modifyName(username,id)) {
+            result.setCode(1);
+            result.setMsg("修改用户名成功");
+            return result;
+        } result.setCode(0);
+        result.setMsg("修改失败，请更换用户名");
+        return result;
+    }
 }

@@ -84,4 +84,11 @@
     <select id="selectByPhone" resultMap="BaseResultMap">
         select <include refid="Base_Column_List"></include> from t_user where phone = #{phone}
     </select>
+    <insert id="insert" parameterMap="BaseResultMap" useGeneratedKeys="true" >
+        insert into t_user (username, password, phone,sex, flag, createdate) values
+          (#{username},#{password},#{phone},#{sex},0,now())
+    </insert>
+    <update id="setName">
+        update t_user set username = #{username} where id = #{id}
+    </update>
 </mapper>

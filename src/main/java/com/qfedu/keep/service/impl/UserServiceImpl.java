@@ -12,6 +12,31 @@ import java.util.Objects;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
+
+    @Override
+    public boolean modifyName(String username, int id) {
+        return userMapper.setName(username,id) > 0;
+    }
+
+    @Override
+    public boolean haveByUsername(String username) {
+        User user = userMapper.selectByName(username);
+        if (user != null) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean haveByPhone(String phone) {
+        return userMapper.selectByPhone(phone) != null;
+    }
+
+    @Override
+    public boolean save(User user) {
+        return userMapper.insert(user) > 0;
+    }
+
     @Override
     public User loginByUsername(String username, String password) {
         User user = userMapper.selectByName(username);
