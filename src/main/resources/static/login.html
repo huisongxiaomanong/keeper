@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="js/jquery-3.1.1.js"></script>
+    <script>
+        $(function () {
+            $.ajax({
+                type: "get",
+                url : "localhost:8080/adminlogin.do?name=&password=",
+                async : true,
+                success : function (data) {
+
+                    alert(data.code)
+                    alert(data.msg);
+                }
+            })
+        })
+
+    </script>
+</head>
+<body>
+<h1>
+    测试一下能不能跑起来￥￥￥￥
+
+
+
+</h1>
+</body>
+</html>
