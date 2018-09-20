@@ -10,21 +10,14 @@ import java.util.Objects;
 
 @Service
 public class UserServiceImpl implements UserService {
-    @Autowired
-    private UserMapper userMapper;
-
     @Override
-    public boolean modifyName(String username, int id) {
-        return userMapper.setName(username,id) > 0;
+    public boolean save(User user) {
+        return userMapper.insert(user) > 0;
     }
 
     @Override
     public boolean haveByUsername(String username) {
-        User user = userMapper.selectByName(username);
-        if (user != null) {
-            return true;
-        }
-        return false;
+        return userMapper.selectByName(username) != null;
     }
 
     @Override
@@ -33,10 +26,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean save(User user) {
-        return userMapper.insert(user) > 0;
+    public boolean modifyName(User user) {
+        return userMapper.updateByIdSelective(user) > 0;
+        //return false;
     }
 
+    @Autowired
+    private UserMapper userMapper;
     @Override
     public User loginByUsername(String username, String password) {
         User user = userMapper.selectByName(username);
@@ -44,6 +40,7 @@ public class UserServiceImpl implements UserService {
             if (Objects.equals(user.getPassword(),password)) {
                 return user;
             }
+            return null;
         }
         return null;
     }
@@ -55,6 +52,7 @@ public class UserServiceImpl implements UserService {
             if (Objects.equals(user.getPassword(),password)) {
                 return user;
             }
+            return null;
         }
         return null;
     }

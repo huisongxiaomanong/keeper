@@ -10,5 +10,5 @@ public interface UserService {
     public boolean haveByUsername(String username);
     public boolean haveByPhone(String phone);
 
-    public boolean modifyName(String username,int id);
+    public boolean modifyName(User user);
 }

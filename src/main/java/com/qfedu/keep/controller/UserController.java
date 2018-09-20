@@ -1,5 +1,6 @@
 package com.qfedu.keep.controller;
 
+import com.qfedu.keep.common.RedisUtil;
 import com.qfedu.keep.domain.User;
 import com.qfedu.keep.result.Result;
 import com.qfedu.keep.service.UserService;
@@ -14,6 +15,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private RedisUtil redisUtil;
 
     //按照用户名登录
     @RequestMapping("/userloginbyusername.do")
@@ -89,10 +92,10 @@ public class UserController {
         return result;
     }
     //修改用户名
-    @RequestMapping("/modifyname.do")
-    public Result modifyName(String username,int id){
+    @RequestMapping("/modify.do")
+    public Result modify(User user){
         Result result = new Result();
-        if (userService.modifyName(username,id)) {
+        if (userService.modifyName(user)) {
             result.setCode(1);
             result.setMsg("修改用户名成功");
             return result;

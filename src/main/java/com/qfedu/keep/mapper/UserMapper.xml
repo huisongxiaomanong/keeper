@@ -5,7 +5,7 @@
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="username" jdbcType="VARCHAR" property="username"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
-        <result column="phone" jdbcType="CHAR" property="phone"/>
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
         <result column="sex" jdbcType="INTEGER" property="sex"/>
         <result column="flag" jdbcType="INTEGER" property="flag"/>
         <result column="createdate" jdbcType="DATE" property="createdate"/>
@@ -56,7 +56,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.qfedu.keep.domain.User">
+    <update id="setName11" parameterType="com.qfedu.keep.domain.User">
         update t_user
         <set>
             <if test="username != null">
@@ -68,6 +68,9 @@
             <if test="phone != null">
                 phone = #{phone,jdbcType=CHAR},
             </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=INTEGER},
+            </if>
             <if test="flag != null">
                 flag = #{flag,jdbcType=INTEGER},
             </if>
@@ -78,17 +81,40 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <!--通过名字搜索用户，用于登录和验证是否用户名已被占用-->
-    <select id="selectByName" resultMap="BaseResultMap">
+    <select id="selectByName" resultType="com.qfedu.keep.domain.User">
         select <include refid="Base_Column_List"></include> from t_user where username = #{username}
     </select>
-    <select id="selectByPhone" resultMap="BaseResultMap">
+    <select id="selectByPhone" resultType="com.qfedu.keep.domain.User">
         select <include refid="Base_Column_List"></include> from t_user where phone = #{phone}
     </select>
-    <insert id="insert" parameterMap="BaseResultMap" useGeneratedKeys="true" >
+    <insert id="insert" parameterType="com.qfedu.keep.domain.User" useGeneratedKeys="true" >
         insert into t_user (username, password, phone,sex, flag, createdate) values
           (#{username},#{password},#{phone},#{sex},0,now())
     </insert>
-    <update id="setName">
-        update t_user set username = #{username} where id = #{id}
+    <!--<update id="setName">-->
+        <!--update t_user set username = #{username} where id = #{id}-->
+    <!--</update>-->
+
+    <update id="updateByIdSelective" parameterType="com.qfedu.keep.domain.User" >
+        update t_user
+        <set >
+            <if test="username != null" >
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null" >
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null" >
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null" >
+                sex = #{sex,jdbcType=INTEGER},
+            </if>
+            <if test="flag != null" >
+                sex = #{flag,jdbcType=INTEGER},
+            </if>
+
+        </set>
+        where id = #{id,jdbcType=INTEGER}
     </update>
 </mapper>

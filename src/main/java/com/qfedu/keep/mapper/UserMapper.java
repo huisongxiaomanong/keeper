@@ -2,6 +2,7 @@ package com.qfedu.keep.mapper;
 
 import com.qfedu.keep.domain.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 
 public interface UserMapper {
@@ -11,5 +12,6 @@ public interface UserMapper {
     int insert(User user);
 //    boolean haveName(String username);
 //    boolean havePhone(String phone);
-    int setName(String username,int id);
+    int updateByIdSelective(User user);
+
 }
