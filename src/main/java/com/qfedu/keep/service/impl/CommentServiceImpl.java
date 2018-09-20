@@ -4,14 +4,10 @@ import com.qfedu.keep.domain.Comment;
 import com.qfedu.keep.mapper.CommentMapper;
 import com.qfedu.keep.service.CommentService;
 import com.qfedu.keep.vo.CommentVo;
-import com.qfedu.keep.vo.PageVo;
 import com.qfedu.keep.vo.PageVo_Mx;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 @Transactional
