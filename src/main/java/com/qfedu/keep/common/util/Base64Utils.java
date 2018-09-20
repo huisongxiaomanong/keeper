@@ -2,9 +2,12 @@ package com.qfedu.keep.common.util;
 
 import java.util.Base64;
 
-//base64
+/**
+ * 基于JDK1.8实现的BASE64编码
+ * 编码
+ * 解码*/
 public class Base64Utils {
-	//转码
+	//编码
 	public static String encode(String msg){
 		return Base64.getEncoder().encodeToString(msg.getBytes());
 	}
