@@ -5,6 +5,7 @@ import com.qfedu.keep.domain.ClassOrder;
 import com.qfedu.keep.domain.FirstClass;
 import com.qfedu.keep.domain.SecondClass;
 import com.qfedu.keep.mapper.AdminMapper;
+import com.qfedu.keep.mapper.ClassOrderMapper;
 import com.qfedu.keep.mapper.FirstClassMapper;
 import com.qfedu.keep.mapper.SecondClassMapper;
 import com.qfedu.keep.service.AdminService;
@@ -26,10 +27,8 @@ public class AdminServiceImpl implements AdminService {
     AdminMapper adminMapper;
 
     @Autowired
-    FirstClassMapper firstClassMapper;
+    ClassOrderMapper classOrderMapper;
 
-    @Autowired
-    SecondClassMapper secondClassMapper;
 
     @Override
     public PageVo login(String name, String password) {
@@ -46,49 +45,20 @@ public class AdminServiceImpl implements AdminService {
         return PageVo.creatJson(4001, "用户名或密码错误", null);
     }
 
-    @Override
-    public PageVo addFirstClassType(FirstClass firstClass) {
-        int insert = firstClassMapper.insert(firstClass);
-        if (insert > 0) {
-            return PageVo.creatJson(4000, "保存成功", null);
-        } else {
-            return PageVo.creatJson(4001, "保存失败", null);
-        }
-    }
-
-    @Override
-    public PageVo showFirstClassType() {
-
-        return null;
-    }
-
-    @Override
-    public PageVo addSecondClassType(SecondClass secondClass) {
-        int insert = secondClassMapper.insert(secondClass);
-        if (insert > 0) {
-            return PageVo.creatJson(4000, "保存成功", null);
-        } else {
-            return PageVo.creatJson(4001, "保存失败", null);
-        }
-    }
-
-    @Override
-    public PageVo deleteClassType(String name, int level) {
-        return null;
-    }
-
-    @Override
-    public PageVo modifyClassType(String name, int level) {
-        return null;
-    }
-
-    @Override
-    public PageVo queryClassType(String name, int level) {
-        return null;
-    }
 
     @Override
     public PageVo addClassOrder(ClassOrder classOrder) {
-        return null;
+        int insert = classOrderMapper.insert(classOrder);
+        if (insert > 0) {
+            return PageVo.creatJson(5000, "添加成功", null);
+        } else {
+            return PageVo.creatJson(5000, "添加失败", null);
+        }
+    }
+
+    @Override
+    public PageVo logout() {
+        SecurityUtils.getSubject().getSession().removeAttribute("user");
+        return PageVo.creatJson(1000, "退出", null);
     }
 }

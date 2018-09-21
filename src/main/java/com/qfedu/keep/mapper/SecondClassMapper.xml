@@ -90,4 +90,7 @@
       price = #{price,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectByFid" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from tb_secondclass where fid = #{fid}
+  </select>
 </mapper>

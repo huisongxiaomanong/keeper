@@ -1,4 +1,4 @@
-package com.qfedu.keep.configure;
+package com.qfedu.keep.config;
 
 import com.qfedu.keep.shiro.UserRelam;
 import org.apache.shiro.mgt.SecurityManager;
@@ -20,6 +20,7 @@ public class ShiroConfigure {
     public SecurityManager getSecurityManager(UserRelam userRelam) {
         DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
         defaultWebSecurityManager.setRealm(userRelam);
+
         return defaultWebSecurityManager;
     }
 
