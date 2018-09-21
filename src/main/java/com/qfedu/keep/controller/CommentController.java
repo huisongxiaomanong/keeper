@@ -4,10 +4,10 @@ import com.qfedu.keep.domain.Comment;
 import com.qfedu.keep.domain.User;
 import com.qfedu.keep.service.CommentService;
 import com.qfedu.keep.vo.CommentVo;
-import com.qfedu.keep.vo.PageVo;
 import com.qfedu.keep.vo.PageVo_Mx;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,6 +19,7 @@ public class CommentController {
     @Autowired
     private CommentService service;
     //留言新增
+    @RequestMapping("commentsave.do")
     public void insert(Comment comment, HttpServletResponse response,HttpSession session) throws IOException {
            //获取当前用户的id
             User user = (User) session.getAttribute("user");
@@ -32,7 +33,8 @@ public class CommentController {
         }
     }
     //相对应文章留言展示 同时查出留言的名字
-    public PageVo_Mx<CommentVo> queryBySid(int sid,int page,int limit){
+    @RequestMapping("commentlist.do")
+    public PageVo_Mx<CommentVo> queryBySid(int sid, int page, int limit){
         return service.queryBySid(sid,page,limit);
     }
 
