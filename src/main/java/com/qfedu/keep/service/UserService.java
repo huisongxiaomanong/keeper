@@ -11,4 +11,6 @@ public interface UserService {
     public boolean haveByPhone(String phone);
 
     public boolean modifyName(User user);
+
+    public  User loginByPhone(String phone);
 }

@@ -10,6 +10,7 @@ import java.util.Objects;
 
 @Service
 public class UserServiceImpl implements UserService {
+
     @Override
     public boolean save(User user) {
         return userMapper.insert(user) > 0;
@@ -29,6 +30,11 @@ public class UserServiceImpl implements UserService {
     public boolean modifyName(User user) {
         return userMapper.updateByIdSelective(user) > 0;
         //return false;
+    }
+
+    @Override
+    public User loginByPhone(String phone) {
+        return userMapper.selectByPhone(phone);
     }
 
     @Autowired
@@ -56,4 +62,6 @@ public class UserServiceImpl implements UserService {
         }
         return null;
     }
+
+
 }
