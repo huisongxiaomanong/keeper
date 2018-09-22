@@ -54,6 +54,5 @@ public class AdminController {
         } else {
             return PageVo.creatJson(5000, "传入的参数为空", null);
         }
-
     }
 }

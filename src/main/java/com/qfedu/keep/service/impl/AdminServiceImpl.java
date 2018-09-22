@@ -29,7 +29,6 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     ClassOrderMapper classOrderMapper;
 
-
     @Override
     public PageVo login(String name, String password) {
         Admin admin = adminMapper.selectByName(name);
@@ -44,7 +43,6 @@ public class AdminServiceImpl implements AdminService {
         }
         return PageVo.creatJson(4001, "用户名或密码错误", null);
     }
-
 
     @Override
     public PageVo addClassOrder(ClassOrder classOrder) {

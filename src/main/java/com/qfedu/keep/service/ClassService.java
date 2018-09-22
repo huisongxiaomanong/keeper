@@ -3,6 +3,7 @@ package com.qfedu.keep.service;
 import com.qfedu.keep.domain.ClassAchieve;
 import com.qfedu.keep.domain.ClassDetail;
 import com.qfedu.keep.vo.PageVo;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public interface ClassService {
 

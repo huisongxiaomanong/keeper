@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.qfedu.keep.mapper.ClassDetailMapper" >
-  <resultMap id="BaseResultMap" type="com.qfedu.keep.domain.ClassDetail" >
+  <resultMap id="BaseResultMap" type="com.qfedu.keep.domain.ClassDetaiquestionsl" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="sid" property="sid" jdbcType="INTEGER" />
     <result column="classimg" property="classimg" jdbcType="VARCHAR" />
     <result column="content" property="content" jdbcType="VARCHAR" />
+      <result column="breath" property="breath" jdbcType="VARCHAR" />
+      <result column="feeling" property="feeling" jdbcType="VARCHAR" />
+      <result column="classdetailimglit" property="classDetailImgLit" jdbcType="VARCHAR" />
+      <result column="classdetailimgdes" property="classDetailImgDes" jdbcType="VARCHAR" />
+      <association property="questions" javaType="com.qfedu.keep.domain.Question">
+          <id column="quesid" property="id"></id>
+          <result column="question" property="question"></result>
+          <result column="solution" property="solution"></result>
+      </association>
+      <collection property="csteps" ofType="com.qfedu.keep.domain.Cstep">
+          <id column="stepid" property="id"></id>
+         <result column="scontent" property="content"></result>
+      </collection>
   </resultMap>
   <sql id="Base_Column_List" >
     id, name, sid, classimg, content
@@ -90,4 +103,13 @@
       content = #{content,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectBySid" resultMap="BaseResultMap">
+    SELECT detail.*, ques.id quesid,ques.question,ques.solution, step.id stepid, step.content scontent FROM tb_classdetail detail
+LEFT JOIN tb_question ques
+on detail.id = ques.cdid
+LEFT JOIN tb_cstep step
+on detail.id = step.cstepdid
+WHERE detail.sid = #{sid}
+  </select>
 </mapper>
