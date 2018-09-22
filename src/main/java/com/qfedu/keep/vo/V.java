@@ -1,6 +1,6 @@
 package com.qfedu.keep.vo;
 
-public class V <T> {
+public class V<T> {
     private int code;
     private String msg;
     private T data;
@@ -28,13 +28,13 @@ public class V <T> {
     public void setData(T date) {
         this.data = date;
     }
-    public static V setError(int code,String msg) {
+    public static V setError(int code, String msg) {
        V v =  new V();
        v.setCode(code);
        v.setMsg(msg);
       return v;
     }
-    public static V setOk(int code,String msg){
+    public static V setOk(int code, String msg){
         V v =  new V();
         v.setCode(code);
         v.setMsg(msg);
