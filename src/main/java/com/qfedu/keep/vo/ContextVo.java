@@ -5,10 +5,19 @@ import java.util.Date;
 public class ContextVo {
     private String uname;
     private String cname;
+    private String pname;
     private Date creattiem;
     private String text;
     private int fabulous;
     private String tname;
+
+    public String getPname() {
+        return pname;
+    }
+
+    public void setPname(String pname) {
+        this.pname = pname;
+    }
 
     public String getUname() {
         return uname;

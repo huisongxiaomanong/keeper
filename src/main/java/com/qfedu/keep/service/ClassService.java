@@ -1,17 +1,28 @@
 package com.qfedu.keep.service;
 
 import com.qfedu.keep.domain.ClassAchieve;
+import com.qfedu.keep.domain.ClassDetail;
 import com.qfedu.keep.vo.PageVo;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
+import javax.servlet.http.HttpSession;
 
 public interface ClassService {
-    // 展示所有的商品类型
-    PageVo showClassType(String level);
 
     // 展示课程的具体步骤
     PageVo showClassDetail(String sid);
 
+    // 增加课程具体步骤
+    PageVo addClassDetail(ClassDetail classDetail);
+
+    // 删除课程具体步骤
+    PageVo deleteClassDetail(String id);
+
+    // 修改课程具体步骤
+    PageVo modifyClassDetail(ClassDetail classDetail);
+
     // 参加具体的某个课程
-    PageVo joinClass(String sid);
+    PageVo joinClass(String sid, HttpSession session);
 
     // 添加用户的课程成果
     PageVo addClassAchieve(ClassAchieve classAchieve);

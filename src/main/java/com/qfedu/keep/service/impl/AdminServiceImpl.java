@@ -5,10 +5,14 @@ import com.qfedu.keep.domain.ClassOrder;
 import com.qfedu.keep.domain.FirstClass;
 import com.qfedu.keep.domain.SecondClass;
 import com.qfedu.keep.mapper.AdminMapper;
+import com.qfedu.keep.mapper.ClassOrderMapper;
 import com.qfedu.keep.mapper.FirstClassMapper;
 import com.qfedu.keep.mapper.SecondClassMapper;
 import com.qfedu.keep.service.AdminService;
 import com.qfedu.keep.vo.PageVo;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,63 +27,36 @@ public class AdminServiceImpl implements AdminService {
     AdminMapper adminMapper;
 
     @Autowired
-    FirstClassMapper firstClassMapper;
-
-    @Autowired
-    SecondClassMapper secondClassMapper;
+    ClassOrderMapper classOrderMapper;
 
     @Override
     public PageVo login(String name, String password) {
         Admin admin = adminMapper.selectByName(name);
         if (!Objects.equals(admin,null) && Objects.equals(admin.getPassword(), password)) {
+            //获取主题---当前登录信息
+            Subject subject=SecurityUtils.getSubject();
+            // 创建令牌
+            UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(admin.getName(), admin.getPassword());
+            subject.login(usernamePasswordToken);
+            subject.getSession().setAttribute("admin", admin);
             return PageVo.creatJson(4000, "登录成功", null);
         }
         return PageVo.creatJson(4001, "用户名或密码错误", null);
     }
 
     @Override
-    public PageVo addFirstClassType(FirstClass firstClass) {
-        int insert = firstClassMapper.insert(firstClass);
-        if (insert > 0) {
-            return PageVo.creatJson(4000, "保存成功", null);
-        } else {
-            return PageVo.creatJson(4001, "保存失败", null);
-        }
-    }
-
-    @Override
-    public PageVo showFirstClassType() {
-
-        return null;
-    }
-
-    @Override
-    public PageVo addSecondClassType(SecondClass secondClass) {
-        int insert = secondClassMapper.insert(secondClass);
-        if (insert > 0) {
-            return PageVo.creatJson(4000, "保存成功", null);
-        } else {
-            return PageVo.creatJson(4001, "保存失败", null);
-        }
-    }
-
-    @Override
-    public PageVo deleteClassType(String name, int level) {
-        return null;
-    }
-
-    @Override
-    public PageVo modifyClassType(String name, int level) {
-        return null;
-    }
-
-    @Override
-    public PageVo queryClassType(String name, int level) {
-        return null;
-    }
-
-    @Override
     public PageVo addClassOrder(ClassOrder classOrder) {
-        return null;
+        int insert = classOrderMapper.insert(classOrder);
+        if (insert > 0) {
+            return PageVo.creatJson(5000, "添加成功", null);
+        } else {
+            return PageVo.creatJson(5000, "添加失败", null);
+        }
+    }
+
+    @Override
+    public PageVo logout() {
+        SecurityUtils.getSubject().getSession().removeAttribute("user");
+        return PageVo.creatJson(1000, "退出", null);
     }
 }

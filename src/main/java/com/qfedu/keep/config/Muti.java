@@ -1,6 +1,7 @@
 package com.qfedu.keep.config;
 
 
+import com.qfedu.keep.common.util.FDFSUtil;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,5 +18,10 @@ public class Muti{
         factory.setMaxFileSize("102400KB");
         factory.setMaxRequestSize("1024000KB");
         return factory.createMultipartConfig();
+    }
+
+    @Bean
+    public FDFSUtil getFdfsUtil() throws Exception {
+        return new FDFSUtil("classpath:fdfs_client.conf");
     }
 }

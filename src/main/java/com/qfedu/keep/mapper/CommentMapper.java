@@ -21,7 +21,7 @@ public interface CommentMapper {
 
     int updateByPrimaryKey(Comment record);
 
-    List<CommentVo>queryBySid(int sid, @Param("index") int index,@Param("count") int count);
+    List<CommentVo>queryBySid(int sid, @Param("index") int index, @Param("count") int count);
 
     int selectBycount(int sid);
 
