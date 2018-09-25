@@ -14,4 +14,6 @@ public interface UandClassMapper {
     int updateByPrimaryKeySelective(UandClass record);
 
     int updateByPrimaryKey(UandClass record);
+
+
 }

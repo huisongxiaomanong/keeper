@@ -3,9 +3,14 @@ package com.qfedu.keep.controller;
 import com.qfedu.keep.common.RandUtil;
 import com.qfedu.keep.common.miaodiyun.httpApiDemo.IndustrySMS;
 import com.qfedu.keep.common.redis.JedisUtil;
+import com.qfedu.keep.common.util.JudgeNull;
+import com.qfedu.keep.domain.ClassAchieve;
 import com.qfedu.keep.domain.User;
 import com.qfedu.keep.result.Result;
+import com.qfedu.keep.service.ClassService;
 import com.qfedu.keep.service.UserService;
+import com.qfedu.keep.vo.PageVo;
+import com.qfedu.keep.vo.PageVo_Mx;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +29,9 @@ public class UserController {
    /* @Autowired
     private JedisUtil jedisUtil;*/
 
+   @Autowired
+   private ClassService classService;
+
     @RequestMapping("/getphone.do")
 
     public Result sendActive(String phone, HttpServletRequest request){
@@ -39,10 +47,6 @@ public class UserController {
             result.setMsg("发送成功");
             return result;
     }
-
-
-
-
 
     //按照用户名登录
     @RequestMapping("/userloginbyusername.do")
@@ -139,5 +143,35 @@ public class UserController {
         result.setCode(1);
         result.setMsg("退出成功");
         return result;
+    }
+
+    // 蔺兴杰添加：
+    // 用户参加课程接口
+    @RequestMapping("joinClassDetail.do")
+    public PageVo joinClassDetail(HttpSession session, String classDetailId) {
+        if (!JudgeNull.isNull(classDetailId)) {
+            return classService.joinClass(classDetailId, session);
+        } else {
+            return PageVo.creatJson(1001, "传入参数为空", null);
+        }
+    }
+    // 用户参加某个活动
+    @RequestMapping("addClassAchieve.do")
+    public PageVo addClassAchieve(ClassAchieve classAchieve) {
+        if (!JudgeNull.isNull(classAchieve)) {
+            return classService.addClassAchieve(classAchieve);
+        } else {
+            return PageVo.creatJson(1001, "传入参数为空", null);
+        }
+    }
+
+    // 用户展示效果
+    @RequestMapping("showClassAchieve.do")
+    public PageVo showClassAchieve(String classId) {
+        if (!JudgeNull.isNull(classId)) {
+            return classService.showClassAchieve(classId);
+        } else {
+            return PageVo.creatJson(1001, "传入参数为空", null);
+        }
     }
 }

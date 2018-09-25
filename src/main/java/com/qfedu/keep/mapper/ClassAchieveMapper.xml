@@ -90,4 +90,8 @@
       achieveimg = #{achieveimg,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByClassid" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from tb_classachieve where cid = #{classid}
+  </select>
 </mapper>

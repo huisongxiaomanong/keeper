@@ -23,6 +23,5 @@ public class Test
 
 		// 语音验证码
 
-
 	}
 }
