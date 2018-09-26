@@ -30,4 +30,13 @@ public class Goodstype {
     public void setFlag(String flag) {
         this.flag = flag == null ? null : flag.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Goodstype{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", flag='" + flag + '\'' +
+                '}';
+    }
 }
